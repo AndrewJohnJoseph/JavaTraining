@@ -90,10 +90,11 @@ public class AddCustomer {
 		mp.put(3, 40);
 		System.out.println(mp);
 		
-		Iterator i = lst.iterator();
-		while(i.hasNext()) {
-			System.out.println(i.next());
-		}
+//		Iterator i = lst.iterator();
+//		while(i.hasNext()) {
+//			System.out.println(i.next());
+//		}
+		lst.forEach(cus -> System.out.println(cus));
 	}
 
 }

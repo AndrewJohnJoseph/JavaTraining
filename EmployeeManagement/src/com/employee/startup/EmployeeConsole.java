@@ -9,6 +9,10 @@ import com.employee.models.Employee;
 import com.employee.models.LoginDetails;
 import com.employee.models.MyOuterClass;
 import com.employee.models.MyOuterClass.MyInnerClass;
+import com.employee.models.MyRunnable;
+import com.employee.models.MyThread;
+import com.employee.models.SyncThread;
+import com.employee.models.TestThread;
 import com.employee.models.UserNotFoundException;
 
 import java.io.*;
@@ -109,69 +113,69 @@ public class EmployeeConsole {
 		
 		
 		
-		int choice = 0;
-		List lst = new ArrayList<Employee>();
-		
-		InputStreamReader isr = new InputStreamReader(System.in);
-		BufferedReader br = new BufferedReader(isr);
-		do {
-			
-			System.out.println("1. Add Employee");
-			System.out.println("2. View Employees");
-			System.out.println("3. Write to File");
-			System.out.println("4. Read from File");
-			System.out.println("5. Sort Using Comparable");
-			System.out.println("6. Sort Using Comparator");
-			System.out.println("7. Exit");
-			System.out.print("Enter Your Choice : ");
-			try {
-				choice = Integer.parseInt(br.readLine());
-				switch(choice) {
-					case 1:
-						System.out.print("Enter Employee ID : ");
-						int _id = Integer.parseInt(br.readLine());
-						System.out.print("Enter Employee Name : ");
-						String _name = br.readLine();
-						Employee emp = new Employee(_id, _name);
-						lst.add(emp);
-						break;
-					case 2:
-						System.out.println("Employee Details :");
-						System.out.println(lst);
-						break;
-					case 3:
-						FileOutputStream fs = new FileOutputStream("test.txt");
-						ObjectOutputStream os = new ObjectOutputStream(fs);
-						
-						os.writeObject(lst);
-						System.out.println("Employee Details have been written in the file C:\test.txt successfully");
-						break;
-					case 4:
-						FileInputStream fi = new FileInputStream("test.txt");
-						ObjectInputStream oi = new ObjectInputStream(fi);
-						List newlst = (ArrayList<Employee>)oi.readObject();
-						System.out.println(newlst);
-						break;
-					case 5:
-						Collections.sort(lst);
-						break;
-					case 6:
-						Collections.sort(lst, Employee.NameComparator);
-						break;
-					case 7: 
-						System.exit(0);
-						break;
-					default:
-						System.out.println("Employee Details :");
-						System.out.println(lst);
-						break;
-				}
-			}
-			catch(Exception exp) {
-				
-			}
-			System.out.println(choice);
-		}while(choice < 7);
+//		int choice = 0;
+//		List lst = new ArrayList<Employee>();
+//		
+//		InputStreamReader isr = new InputStreamReader(System.in);
+//		BufferedReader br = new BufferedReader(isr);
+//		do {
+//			
+//			System.out.println("1. Add Employee");
+//			System.out.println("2. View Employees");
+//			System.out.println("3. Write to File");
+//			System.out.println("4. Read from File");
+//			System.out.println("5. Sort Using Comparable");
+//			System.out.println("6. Sort Using Comparator");
+//			System.out.println("7. Exit");
+//			System.out.print("Enter Your Choice : ");
+//			try {
+//				choice = Integer.parseInt(br.readLine());
+//				switch(choice) {
+//					case 1:
+//						System.out.print("Enter Employee ID : ");
+//						int _id = Integer.parseInt(br.readLine());
+//						System.out.print("Enter Employee Name : ");
+//						String _name = br.readLine();
+//						Employee emp = new Employee(_id, _name);
+//						lst.add(emp);
+//						break;
+//					case 2:
+//						System.out.println("Employee Details :");
+//						System.out.println(lst);
+//						break;
+//					case 3:
+//						FileOutputStream fs = new FileOutputStream("test.txt");
+//						ObjectOutputStream os = new ObjectOutputStream(fs);
+//						
+//						os.writeObject(lst);
+//						System.out.println("Employee Details have been written in the file C:\test.txt successfully");
+//						break;
+//					case 4:
+//						FileInputStream fi = new FileInputStream("test.txt");
+//						ObjectInputStream oi = new ObjectInputStream(fi);
+//						List newlst = (ArrayList<Employee>)oi.readObject();
+//						System.out.println(newlst);
+//						break;
+//					case 5:
+//						Collections.sort(lst);
+//						break;
+//					case 6:
+//						Collections.sort(lst, Employee.NameComparator);
+//						break;
+//					case 7: 
+//						System.exit(0);
+//						break;
+//					default:
+//						System.out.println("Employee Details :");
+//						System.out.println(lst);
+//						break;
+//				}
+//			}
+//			catch(Exception exp) {
+//				
+//			}
+//			System.out.println(choice);
+//		}while(choice < 7);
 		
 		//Day 4
 //		System.out.println(statInt);
@@ -235,6 +239,31 @@ public class EmployeeConsole {
 //		mic.OuterMethod(); //Not possible
 		
 		
+		//Threading
+		
+//		System.out.println("Regular Main Started");
+//		MyThread myt = new MyThread();
+//		myt.run();
+//		System.out.println("Regular Main Ended");
+		
+//		System.out.println("Thread Main Started");
+//		MyThread myt1 = new MyThread();
+//		myt1.start();
+//		System.out.println("Thread Main Ended");
+		
+//		System.out.println("Regular Main Started");
+//		MyRunnable myrun = new MyRunnable();
+//		Thread t = new Thread(myrun);
+//		t.start();
+//		System.out.println("Regular Main Ended");
+		
+		System.out.println("Regular Main Started");
+		TestThread t1 = new TestThread();
+		SyncThread A = new SyncThread(t1);
+		SyncThread B = new SyncThread(t1);
+		A.start();
+		B.start();
+		System.out.println("Regular Main Ended");
 		
 	}
 	
