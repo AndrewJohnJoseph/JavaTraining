@@ -11,6 +11,8 @@ import com.bridge.example.RemoteControl;
 import com.bridge.example.TV;
 import com.bridge.example.VoiceController;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import com.abstractdp.activity.PepperoniPizzaFactory2;
@@ -19,6 +21,16 @@ import com.abstractdp.activity.PizzaPreparation;
 import com.abstractdp.activity.VeggiePizzaFactory2;
 import com.abstractdp.example.*;
 import com.builder.example.MyUser;
+import com.chainofresp.example.Director;
+import com.chainofresp.example.Employee7;
+import com.chainofresp.example.Manager;
+import com.chainofresp.example.Request;
+import com.chainofresp.example.RequestType;
+import com.chainofresp.example.Supervisor;
+import com.command.example.AddEmployeeCommand;
+import com.command.example.Employee8;
+import com.command.example.EmployeeManagement;
+import com.command.example.RemoveEmployeeCommand;
 import com.composite.example.Employee4;
 import com.composite.example.Manager4;
 import com.composite.example.RegularEmployee;
@@ -27,15 +39,45 @@ import com.factory.example.Pizza;
 import com.factory.example.PizzaFactory;
 import com.flyweight.example.Circle;
 import com.flyweight.example.ShapeFactory;
+import com.intepret.example.AndExpression;
+import com.intepret.example.Employee9;
+import com.intepret.example.Expression;
+import com.intepret.example.IdExpression;
+import com.intepret.example.NameExpression;
+import com.intepret.example.OrExpression;
+import com.iterator.example.Employee10;
+import com.iterator.example.Employee10Collection;
+import com.mediator.example.Customer;
+import com.momento.example.Employee11;
 import com.multiton.example.Resource;
 import com.multiton.example.ResourceMultiton;
 import com.multiton.example.ResourceMultitonn;
 import com.multiton.example.ResourceSingleton;
+import com.nullobject.example.ConsolePrinter;
+import com.nullobject.example.NullPrinter;
+import com.nullobject.example.Printer;
 import com.objectpool.example.Employee1;
 import com.objectpool.example.EmployeePool;
+import com.observer.example.NewsAgency;
+import com.observer.example.NewsChannel;
 import com.prototype.example.Employee;
 import com.prototype.example.PrototypeFactory;
+import com.proxy.example.Employee6;
+import com.proxy.example.EmployeeProxy;
 import com.singleton.example.MySingleton;
+import com.state.activity.LightSwitch1;
+import com.state.example.LightSwitch;
+import com.stratergy.example.BubbleSortStrategy;
+import com.stratergy.example.SelectionSortStrategy;
+import com.stratergy.example.Sorter;
+import com.stratergy.example.SortingStratergy;
+import com.template.example.Coffee;
+import com.template.example.Tea;
+import com.visitor.example.BonusVisitor;
+import com.visitor.example.Clerk12;
+import com.visitor.example.Director12;
+import com.visitor.example.Employee12;
+import com.visitor.example.Manager12;
 
 public class DesignPatternMain {
 
@@ -336,6 +378,238 @@ public class DesignPatternMain {
 			circle.draw();
 		}
 
+		System.out.println("*********************************************************************************************************");
+		
+		//Proxy Design Pattern
+ 		System.out.println("");
+ 		System.out.println("Proxy Design Pattern");
+ 		System.out.println("");	
+		
+		Employee6 employee6 = new EmployeeProxy("Andrew");
+		employee6.work();
+		employee6.work();
+		
+		System.out.println("*********************************************************************************************************");
+		//Chain of Responsibilities Design Pattern
+ 		System.out.println("");
+ 		System.out.println("Chain of Responsibilities Design Pattern");
+ 		System.out.println("");	
+		
+// 		Employee7 supervisor = new Supervisor();
+// 	     Employee7 manager = new Manager();
+// 	     Employee7 director = new Director();
+//
+// 	     supervisor.setNextEmployee(manager);
+// 	     manager.setNextEmployee(director);
+//
+// 	     // Process requests
+// 	     supervisor.processRequest(new Request(RequestType.LEAVE, 2));
+// 	     supervisor.processRequest(new Request(RequestType.LEAVE, 7));
+// 	     supervisor.processRequest(new Request(RequestType.LEAVE, 14));
+// 	     supervisor.processRequest(new Request(RequestType.TRAVEL, 5));
+ 	     
+ 	    System.out.println("*********************************************************************************************************");
+		//Command Design Pattern
+ 		System.out.println("");
+ 		System.out.println("Command Design Pattern");
+ 		System.out.println("");	
+ 		
+ 	// Create the Receiver object
+ 			Employee8 employee8 = new Employee8("Andrew John", 123);
+
+ 			// Create the Command objects
+ 			AddEmployeeCommand addCommand = new AddEmployeeCommand(employee8);
+ 			RemoveEmployeeCommand removeCommand = new RemoveEmployeeCommand(employee8);
+
+ 			// Create the Invoker object
+ 			EmployeeManagement management = new EmployeeManagement();
+
+ 			// Set and execute the AddEmployeeCommand
+ 			management.setCommand(addCommand);
+ 			management.executeCommand();
+
+ 			// Set and execute the RemoveEmployeeCommand
+ 			management.setCommand(removeCommand);
+ 			management.executeCommand();
+
+ 			System.out.println("*********************************************************************************************************");
+ 			//Interpretor Design Pattern
+ 	 		System.out.println("");
+ 	 		System.out.println("Interpretor Design Pattern");
+ 	 		System.out.println("");	
+ 	 		
+ 	 		List<Employee9> employees = new ArrayList<Employee9>();
+ 	 	     employees.add(new Employee9("John", 1));
+ 	 	     employees.add(new Employee9("Jane", 2));
+ 	 	     employees.add(new Employee9("Bob", 3));
+ 	 	     
+ 	 	     Expression expression1 = new NameExpression("John");
+ 	 	     Expression expression2 = new IdExpression(2);
+ 	 	     Expression orExpression = new OrExpression(expression1, expression2);
+ 	 	     
+ 	 	     System.out.println("Employees who match the expression: " + orExpression.interpret(employees.get(0)) + ", " + orExpression.interpret(employees.get(1)) + ", " + orExpression.interpret(employees.get(2)));
+ 	 	     
+ 	 	     Expression expression3 = new NameExpression("Bob");
+ 	 	     Expression expression4 = new IdExpression(3);
+ 	 	     Expression andExpression = new AndExpression(expression3, expression4);
+ 	 	     
+ 	 	     System.out.println("Employee who matches the expression: " + andExpression.interpret(employees.get(0)) + ", " + andExpression.interpret(employees.get(1)) + ", " + andExpression.interpret(employees.get(2)));
+
+ 	 	     System.out.println("*********************************************************************************************************");
+			//Iterator Design Pattern
+	 		System.out.println("");
+	 		System.out.println("Iterator Design Pattern");
+	 		System.out.println("");	
+	 		
+	 		List<Employee10> employees10 = new ArrayList<Employee10>();
+			employees10.add(new Employee10("Jeeva", 1));
+			employees10.add(new Employee10("Jack", 2));
+			employees10.add(new Employee10("Barbie", 3));
+
+			Employee10Collection employee10Collection = new Employee10Collection(employees10);
+			while (employee10Collection.hasNext()) {
+				Employee10 employee10 = (Employee10) employee10Collection.next();
+				System.out.println("Employee Name: " + employee10.getName() + ", Employee ID: " + employee10.getId());
+			}
+			
+			System.out.println("*********************************************************************************************************");
+			//Mediator Design Pattern
+	 		System.out.println("");
+	 		System.out.println("Mediator Design Pattern");
+	 		System.out.println("");	
+	 		
+	 		Customer andrew = new Customer("Andrew");
+			Customer john1 = new Customer("John");
+
+			andrew.sendMessage("Laptop is generating more heat");
+			john1.sendMessage("Please check the battery");
+
+			System.out.println("*********************************************************************************************************");
+			//Momento Design Pattern
+	 		System.out.println("");
+	 		System.out.println("Momento Design Pattern");
+	 		System.out.println("");	
+	 		
+	 		Employee11 employee11 = new Employee11("Selva", "Manager", 50000);
+	        System.out.println("Employee before change: " + employee11.getName() + ", " + employee11.getDesignation() + ", " + employee11.getSalary());
+	        
+	        Employee11.Memento memento = employee11.save();
+	        employee11.setName("Rahul");
+	        employee11.setDesignation("Developer");
+	        employee11.setSalary(40000);
+	        System.out.println("Employee after change: " + employee11.getName() + ", " + employee11.getDesignation() + ", " + employee11.getSalary());
+	        
+	        employee11.restore(memento);
+	        System.out.println("Employee after restore: " + employee11.getName() + ", " + employee11.getDesignation() + ", " + employee11.getSalary());
+
+	        System.out.println("*********************************************************************************************************");
+			//NullObject Design Pattern
+	 		System.out.println("");
+	 		System.out.println("NullObject Design Pattern");
+	 		System.out.println("");	
+	 		
+	        Printer printer = getPrinter();
+	        printer.print("Hello, world!");
+	        
+	        System.out.println("*********************************************************************************************************");
+			//Observer Design Pattern
+	 		System.out.println("");
+	 		System.out.println("Observer Design Pattern");
+	 		System.out.println("");	
+	        
+	        NewsAgency newsAgency = new NewsAgency();
+	        NewsChannel newsChannel1 = new NewsChannel();
+	        NewsChannel newsChannel2 = new NewsChannel();
+
+	        newsAgency.attach(newsChannel1);
+	        newsAgency.attach(newsChannel2);
+
+	        newsAgency.notifyObservers("COVID-19 vaccine approved by FDA");
+
+	        newsAgency.detach(newsChannel2);
+
+	        newsAgency.notifyObservers("Bitcoin hits all-time high");
+
+	        System.out.println("*********************************************************************************************************");
+			//Stage Design Pattern
+	 		System.out.println("");
+	 		System.out.println("State Design Pattern");
+	 		System.out.println("");	
+	 		
+	 		LightSwitch lightSwitch = new LightSwitch();
+	        lightSwitch.switchOn();
+	        lightSwitch.switchOff();
+	        lightSwitch.switchOff();
+	        lightSwitch.switchOn();
+	        lightSwitch.switchOn();
+	        
+	        System.out.println("*********************************************************************************************************");
+			//Stage Design Pattern -- Activity 24-Apr-2023
+	 		System.out.println("");
+	 		System.out.println("State Design Pattern -- Activity 24-Apr-2023");
+	 		System.out.println("");	
+	 		
+	 		LightSwitch1 lightSwitch1 = new LightSwitch1();
+	        lightSwitch1.greenSwitch();
+	        lightSwitch1.redSwitch();
+	        lightSwitch1.redSwitch();
+	        lightSwitch1.yellowSwitch();
+
+	        System.out.println("*********************************************************************************************************");
+			//Stratergy Design Pattern
+	 		System.out.println("");
+	 		System.out.println("Stratergy Design Pattern");
+	 		System.out.println("");	
+	 		
+	 		int[] array = {5, 3, 8, 4, 2};
+	 	     
+	 	     SortingStratergy strategy1 = new BubbleSortStrategy();
+	 	     SortingStratergy strategy2 = new SelectionSortStrategy();
+	 	     
+	 	     Sorter sorter = new Sorter(strategy1);
+	 	     sorter.sort(array);
+	 	     System.out.println(Arrays.toString(array));
+	 	     
+	 	     sorter.setStrategy(strategy2);
+	 	     sorter.sort(array);
+	 	     System.out.println(Arrays.toString(array));
+	 	     
+	 	    System.out.println("*********************************************************************************************************");
+			//Teamplate Design Pattern
+	 		System.out.println("");
+	 		System.out.println("Teamplate Design Pattern");
+	 		System.out.println("");	
+	 	     
+	 	    Coffee coffee = new Coffee();
+			coffee.prepareBeverage();
+
+			System.out.println();
+
+			Tea tea = new Tea();
+			tea.prepareBeverage();
+
+			System.out.println("*********************************************************************************************************");
+			//Visitor Design Pattern
+	 		System.out.println("");
+	 		System.out.println("Visitor Design Pattern");
+	 		System.out.println("");	
+			
+			Employee12[] employees12 = { new Clerk12(), new Manager12(), new Director12() };
+	        BonusVisitor visitor = new BonusVisitor();
+	        
+	        for (Employee12 employee12 : employees12) {
+	            employee12.accept(visitor);
+	        }
+
+
 	}
+	
+	public static Printer getPrinter() {
+	     // return null to use the ConsolePrinter, or return new NullPrinter() to use 
+		 //the Null Object
+	     //return new NullPrinter();
+		return new ConsolePrinter();
+	 }
+
 
 }
