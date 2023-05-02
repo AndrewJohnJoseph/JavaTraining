@@ -137,7 +137,18 @@ public class TenthAprConsole {
 //			
 //		};
 //		System.out.println(evenorodd.apply(52));
+		
+//		try {
+//			availableseats();
+//		}
+//		catch(Exception exp) {
+//			System.out.println("Seat not available");
+//		}
 
 	}
+	
+//	public static void availableseats() throws Exception {
+//		throw null;
+//	}
 
 }

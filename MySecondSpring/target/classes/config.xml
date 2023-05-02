@@ -1,8 +1,82 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="
-        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
-	<bean id="obj" class="com.dal.HelloWorld"></bean>
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+           http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context.xsd">
+               
+     <context:annotation-config></context:annotation-config>
+     <context:component-scan base-package="com.dal" />
+        
+	<!--  <bean id="obj" class="com.dal.HelloWorld"></bean>  -->
+	
+	<!-- Getter / Setter Assign -->
+	<!--  <bean id="objCar" class="com.myspring.model.Car">
+		<property name="name" value="Honda" />
+		<property name="model" value="Jazz" />
+	</bean>
 
+	<bean id="objUser" class="com.myspring.model.User">
+		<property name="userName" value="Andrew" />
+		<property name="car" ref="objCar" />
+	</bean>  -->
+	
+	<!-- Constructor Assign -->
+	<!-- <bean id="objCar1" class="com.myspring.model.Car">
+		<constructor-arg name="name" value="Honda" />
+		<constructor-arg name="model" value="Jazz" />
+	</bean>
+
+	<bean id="objUser" class="com.myspring.model.User">
+		<constructor-arg name="userName" value="Andrew" />
+		<constructor-arg name="car" ref="objCar1" />
+	</bean> -->
+	
+	<!-- Auto Wiring byName -->
+	<!--  <bean id="car" class="com.myspring.model.Car">
+		<constructor-arg name="name" value="Honda" />
+		<constructor-arg name="model" value="Jazz" />
+	</bean>
+
+	<bean id="objUser" class="com.myspring.model.User" autowire="byName">
+		<property name="userName" value="Andrew" />
+	</bean> -->
+	
+	<!--  <bean id="car" class="com.myspring.model.Car">
+		<constructor-arg name="name" value="Honda" />
+		<constructor-arg name="model" value="Jazz" />
+	</bean>
+
+	<bean id="objUser" class="com.myspring.model.User" autowire="byName">
+		<constructor-arg name="userName" value="Andrew" />
+	</bean> -->
+	
+	<!-- Auto Wiring byType -->
+	<!--  <bean id="car" class="com.myspring.model.Car">
+		<constructor-arg name="name" value="Honda" />
+		<constructor-arg name="model" value="Jazz" />
+	</bean>
+
+	<bean id="objUser" class="com.myspring.model.User" autowire="byType">
+		<property name="userName" value="Andrew" />
+	</bean> -->
+	
+	<!-- Auto Wiring Annotation -->
+	<!--  <bean id="car" class="com.myspring.model.Car">
+		<constructor-arg name="name" value="Honda" />
+		<constructor-arg name="model" value="Jazz" />
+	</bean>
+
+	<bean id="objCustomer" class="com.myspring.model.Customer">
+		<constructor-arg name="userName" value="Andrew" />
+	</bean> -->
+	
+	<!-- Auto Wiring Annotation with Assign default value -->
+	<!--  <bean id="car" class="com.myspring.model.Car">
+	</bean>
+
+	<bean id="objCustomer" class="com.myspring.model.Customer">
+	</bean> -->
 </beans>

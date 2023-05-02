@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.Scanner;
 
 import com.employee.models.Employee;
 import com.employee.models.LoginDetails;
@@ -257,14 +258,32 @@ public class EmployeeConsole {
 //		t.start();
 //		System.out.println("Regular Main Ended");
 		
-		System.out.println("Regular Main Started");
-		TestThread t1 = new TestThread();
-		SyncThread A = new SyncThread(t1);
-		SyncThread B = new SyncThread(t1);
-		A.start();
-		B.start();
-		System.out.println("Regular Main Ended");
+//		System.out.println("Regular Main Started");
+//		TestThread t1 = new TestThread();
+//		SyncThread A = new SyncThread(t1);
+//		SyncThread B = new SyncThread(t1);
+//		A.start();
+//		B.start();
+//		System.out.println("Regular Main Ended");
 		
+//		Scanner sc = new Scanner(System.in);
+//		System.out.println("Enter the no : ");
+//		String str = sc.next();
+//		int x = Integer.parseInt(str);
+//		System.out.println(x);
+		
+//		int d=0;
+//		try {
+//			int i = 1/(d * doIt());
+//		}
+//		catch(Exception exp) {
+//			System.out.println(exp);
+//		}
+		
+	}
+	
+	public static int doIt() throws Exception {
+		throw new Exception("Forget IT");
 	}
 	
 	public static void addIDs(List<? super Integer> lst) {
