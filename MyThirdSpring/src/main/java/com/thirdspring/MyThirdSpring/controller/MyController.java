@@ -3,6 +3,9 @@ package com.thirdspring.MyThirdSpring.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -11,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.thirdspring.MyThirdSpring.Service.TravellerAuthProvider;
 import com.thirdspring.MyThirdSpring.Service.TravellerService;
 import com.thirdspring.MyThirdSpring.entity.MyTraveller;
 
@@ -20,6 +24,9 @@ public class MyController {
 	@Autowired
 	TravellerService travellerService;
 	
+	@Autowired
+	TravellerAuthProvider auth;
+	
 	@GetMapping("/welcome")
 	public String helloWorld() {
 		return "Hi Andrew. Good Afternoon.";
@@ -27,6 +34,7 @@ public class MyController {
 	
 	@PostMapping("/travellers")
 	public MyTraveller postTravellers(@RequestBody MyTraveller traveller) {
+		traveller.setTravellerPwd(new BCryptPasswordEncoder(1).encode(traveller.getTravellerPwd()));
 		return travellerService.addTraveller(traveller);
 	}
 	
@@ -49,4 +57,5 @@ public class MyController {
 	public void deleteTravellerById(@PathVariable Long id) {
 		travellerService.deleteTravellersById(id);
 	}
+	
 }

@@ -2,6 +2,8 @@ package com.thirdspring.MyThirdSpring.Service;
 
 import java.util.List;
 
+import org.springframework.http.ResponseEntity;
+
 import com.thirdspring.MyThirdSpring.entity.MyTraveller;
 
 public interface TravellerService {
